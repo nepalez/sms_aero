@@ -1,0 +1,8 @@
+---
+site_name: SmsAero
+site_description: HTTP(s) ruby client to SMS Aero service API
+repo_url: https://github.com/nepalez/sms_aero
+site_author: Andrew Kozin
+theme: readthedocs
+pages:
+  - 'Synopsis': 'index.md'
