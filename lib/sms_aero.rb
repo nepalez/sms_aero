@@ -8,9 +8,11 @@ class SmsAero
   # Collection of dry-types with gem-specific additions
   Types = Module.new { |types| types.include Dry::Types.module }
 
-  %w(types operations scopes).each do |folder|
-    Dir["sms_aero/#{folder}"].each { |file| require_relative file }
-  end
+  require_relative "sms_aero/types/birthday.rb"
+  require_relative "sms_aero/types/channel.rb"
+  require_relative "sms_aero/types/digital.rb"
+  require_relative "sms_aero/types/future.rb"
+  require_relative "sms_aero/types/phone.rb"
 
   settings do
     using type: Types::Strict::String do
