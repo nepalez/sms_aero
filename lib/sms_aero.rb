@@ -28,8 +28,8 @@ class SmsAero
   require_relative "sms_aero/operations/delete_phone"
 
   settings do
-    option :user,     Types::Strict::String
-    option :password, Types::Strict::String
+    option :user,     Types::FilledString
+    option :password, Types::FilledString
     option :use_ssl,  Types::Form::Bool, default: proc { true }
     option :use_post, Types::Form::Bool, default: proc { true }
   end
