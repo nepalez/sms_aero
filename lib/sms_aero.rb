@@ -18,6 +18,7 @@ class SmsAero
 
   require_relative "sms_aero/models/answer"
   require_relative "sms_aero/models/sms"
+  require_relative "sms_aero/models/tariff"
 
   require_relative "sms_aero/operations/add_blacklist"
   require_relative "sms_aero/operations/add_group"
@@ -28,6 +29,7 @@ class SmsAero
   require_relative "sms_aero/operations/check_sending"
   require_relative "sms_aero/operations/check_sign"
   require_relative "sms_aero/operations/check_status"
+  require_relative "sms_aero/operations/check_tariff"
   require_relative "sms_aero/operations/delete_group"
   require_relative "sms_aero/operations/delete_phone"
   require_relative "sms_aero/operations/send_sms"
