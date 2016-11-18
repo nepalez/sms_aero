@@ -19,15 +19,10 @@ class SmsAero
   require_relative "sms_aero/models/success"
 
   settings do
-    using type: Types::Strict::String do
-      option :user
-      option :password
-    end
-
-    using type: Types::Form::Bool, default: -> { true } do
-      option :use_ssl,  default: -> { true }
-      option :use_post, default: -> { true }
-    end
+    option :user,     type: Types::Strict::String
+    option :password, type: Types::Strict::String
+    option :use_ssl,  type: Types::Form::Bool, default: -> { true }
+    option :use_post, type: Types::Form::Bool, default: -> { true }
   end
 
   base_url do |settings|
@@ -45,8 +40,9 @@ class SmsAero
       key_auth :answer,   "json",                        using: :query
     end
 
-    operation 200, 201 do |body:, **|
-      Hashie::Mash.new JSON.parse(body)
+    responses format: :json do
+      response :success, 200, model: Success
+      response :failure, 200, model: Failure
     end
   end
 end
