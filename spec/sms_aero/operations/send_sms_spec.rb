@@ -100,7 +100,8 @@ RSpec.describe "operations[:send_sms]", "#call" do
   context "with valid date:" do
     let(:host)  { "https://gate.smsaero.ru/send" }
     let(:query) do
-      "answer=json&date=4122133200&password=QUX&text=Hi&to=79093828445&type=2&user=BAZ"
+      "answer=json&date=4122133200&password=QUX&text=Hi&" \
+      "to=79093828445&type=2&user=BAZ"
     end
 
     before { params[:date] = Date.parse("2100-08-17") }

@@ -6,7 +6,8 @@ class SmsAero
     attribute :digital, Types::Digital, optional: true
     attribute :type,    Types::Channel, default: -> (*) do
                                           case digital
-                                          when Dry::Initializer::UNDEFINED then 2
+                                          when Dry::Initializer::UNDEFINED
+                                            2
                                           else Dry::Initializer::UNDEFINED
                                           end
                                         end

@@ -5,5 +5,8 @@ AllCops:
   StyleGuideCopsOnly: true
   TargetRubyVersion:  2.3
 
+Style/Lambda:
+  Enabled: false
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes

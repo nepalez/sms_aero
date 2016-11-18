@@ -89,7 +89,9 @@ RSpec.describe "operations[:add_phone]", "#call" do
 
   context "with valid fname:" do
     let(:host)  { "https://gate.smsaero.ru/addphone" }
-    let(:query) { "answer=json&fname=joe&password=PASSWORD&phone=79093828445&user=LOGIN" }
+    let(:query) do
+      "answer=json&fname=joe&password=PASSWORD&phone=79093828445&user=LOGIN"
+    end
 
     before { params[:fname] = "joe" }
 
@@ -109,7 +111,9 @@ RSpec.describe "operations[:add_phone]", "#call" do
 
   context "with valid sname:" do
     let(:host)  { "https://gate.smsaero.ru/addphone" }
-    let(:query) { "answer=json&password=PASSWORD&phone=79093828445&sname=joe&user=LOGIN" }
+    let(:query) do
+      "answer=json&password=PASSWORD&phone=79093828445&sname=joe&user=LOGIN"
+    end
 
     before { params[:sname] = "joe" }
 
@@ -129,7 +133,9 @@ RSpec.describe "operations[:add_phone]", "#call" do
 
   context "with valid lname:" do
     let(:host)  { "https://gate.smsaero.ru/addphone" }
-    let(:query) { "answer=json&lname=smith&password=PASSWORD&phone=79093828445&user=LOGIN" }
+    let(:query) do
+      "answer=json&lname=smith&password=PASSWORD&phone=79093828445&user=LOGIN"
+    end
 
     before { params[:lname] = "smith" }
 
@@ -149,7 +155,9 @@ RSpec.describe "operations[:add_phone]", "#call" do
 
   context "with valid param:" do
     let(:host)  { "https://gate.smsaero.ru/addphone" }
-    let(:query) { "answer=json&param=qux&password=PASSWORD&phone=79093828445&user=LOGIN" }
+    let(:query) do
+      "answer=json&param=qux&password=PASSWORD&phone=79093828445&user=LOGIN"
+    end
 
     before { params[:param] = "qux" }
 
@@ -169,7 +177,10 @@ RSpec.describe "operations[:add_phone]", "#call" do
 
   context "with valid bday:" do
     let(:host)  { "https://gate.smsaero.ru/addphone" }
-    let(:query) { "answer=json&bday=1901-08-17&password=PASSWORD&phone=79093828445&user=LOGIN" }
+    let(:query) do
+      "answer=json&bday=1901-08-17&password=PASSWORD&" \
+      "phone=79093828445&user=LOGIN"
+    end
 
     before { params[:bday] = Date.parse("1901-08-17") }
 
