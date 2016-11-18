@@ -7,6 +7,7 @@ end
 require "sms_aero"
 require "dry-types"
 require "webmock/rspec"
+require "rspec/its"
 
 RSpec.configure do |config|
   config.order = :random

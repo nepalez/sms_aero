@@ -8,11 +8,15 @@ class SmsAero
   # Collection of dry-types with gem-specific additions
   Types = Module.new { |types| types.include Dry::Types.module }
 
-  require_relative "sms_aero/types/birthday.rb"
-  require_relative "sms_aero/types/channel.rb"
-  require_relative "sms_aero/types/digital.rb"
-  require_relative "sms_aero/types/future.rb"
-  require_relative "sms_aero/types/phone.rb"
+  require_relative "sms_aero/types/birthday"
+  require_relative "sms_aero/types/channel"
+  require_relative "sms_aero/types/digital"
+  require_relative "sms_aero/types/future"
+  require_relative "sms_aero/types/phone"
+  require_relative "sms_aero/types/sign_status"
+
+  require_relative "sms_aero/models/failure"
+  require_relative "sms_aero/models/success"
 
   settings do
     using type: Types::Strict::String do

@@ -14,10 +14,11 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = ">= 2.2"
 
   gem.add_runtime_dependency "dry-types", "~> 0.9.1"
-  gem.add_runtime_dependency "evil-client", "~> 0.2.3"
+  gem.add_runtime_dependency "evil-client", "~> 0.3.0"
 
   gem.add_development_dependency "rake", "~> 10.0"
   gem.add_development_dependency "rspec", "~> 3.0"
+  gem.add_development_dependency "rspec-its"
   gem.add_development_dependency "rubocop", "~> 0.42"
   gem.add_development_dependency "webmock", "~> 2.1"
 end
