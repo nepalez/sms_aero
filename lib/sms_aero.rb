@@ -19,10 +19,10 @@ class SmsAero
   require_relative "sms_aero/models/success"
 
   settings do
-    option :user,     type: Types::Strict::String
-    option :password, type: Types::Strict::String
-    option :use_ssl,  type: Types::Form::Bool, default: -> { true }
-    option :use_post, type: Types::Form::Bool, default: -> { true }
+    option :user,     Types::Strict::String
+    option :password, Types::Strict::String
+    option :use_ssl,  Types::Form::Bool, default: -> { true }
+    option :use_post, Types::Form::Bool, default: -> { true }
   end
 
   base_url do |settings|
