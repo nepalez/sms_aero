@@ -21,6 +21,7 @@ class SmsAero
   require_relative "sms_aero/operations/add_group"
   require_relative "sms_aero/operations/check_balance"
   require_relative "sms_aero/operations/check_sending"
+  require_relative "sms_aero/operations/check_status"
 
   settings do
     option :user,     Types::Strict::String
