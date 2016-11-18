@@ -8,32 +8,11 @@ class SmsAero
   # Collection of dry-types with gem-specific additions
   Types = Module.new { |types| types.include Dry::Types.module }
 
-  require_relative "sms_aero/types/birthday"
-  require_relative "sms_aero/types/channel"
-  require_relative "sms_aero/types/digital"
-  require_relative "sms_aero/types/filled_string"
-  require_relative "sms_aero/types/future"
-  require_relative "sms_aero/types/phone"
-  require_relative "sms_aero/types/sign_status"
-
-  require_relative "sms_aero/models/answer"
-  require_relative "sms_aero/models/sms"
-  require_relative "sms_aero/models/tariff"
-
-  require_relative "sms_aero/operations/add_blacklist"
-  require_relative "sms_aero/operations/add_group"
-  require_relative "sms_aero/operations/add_phone"
-  require_relative "sms_aero/operations/check_balance"
-  require_relative "sms_aero/operations/check_groups"
-  require_relative "sms_aero/operations/check_senders"
-  require_relative "sms_aero/operations/check_sending"
-  require_relative "sms_aero/operations/check_sign"
-  require_relative "sms_aero/operations/check_status"
-  require_relative "sms_aero/operations/check_tariff"
-  require_relative "sms_aero/operations/delete_group"
-  require_relative "sms_aero/operations/delete_phone"
-  require_relative "sms_aero/operations/send_sms"
-  require_relative "sms_aero/operations/send_to_group"
+  # Definitions for types, models, and API operations
+  %w(types models operations).each do |folder|
+    path = File.expand_path("lib/sms_aero/#{folder}/*.rb")
+    Dir[path].each { |file| require(file) }
+  end
 
   settings do
     option :user,     Types::FilledString
