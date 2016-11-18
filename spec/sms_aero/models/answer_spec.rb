@@ -1,11 +1,10 @@
 require "spec_helper"
 
-RSpec.describe SmsAero::Success do
+RSpec.describe SmsAero::Answer do
   let(:source) { { result: "rejected", reason: "whatever", foo: "bar" } }
 
   subject { described_class[source] }
   it { is_expected.to eq result: "rejected", reason: "whatever" }
-  its(:success?) { is_expected.to eq true }
 
   context "without result:" do
     before { source.delete :result }

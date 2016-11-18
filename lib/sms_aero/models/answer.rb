@@ -1,4 +1,4 @@
-class SmsAero::Success < Evil::Client::Model
+class SmsAero::Answer < Evil::Client::Model
   attribute :result, default: proc { "accepted" }
   attribute :reason, default: proc { nil }
 

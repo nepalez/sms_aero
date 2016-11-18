@@ -15,14 +15,15 @@ class SmsAero
   require_relative "sms_aero/types/phone"
   require_relative "sms_aero/types/sign_status"
 
-  require_relative "sms_aero/models/failure"
-  require_relative "sms_aero/models/success"
+  require_relative "sms_aero/models/answer"
+
+  require_relative "sms_aero/operations/add_blacklist"
 
   settings do
     option :user,     Types::Strict::String
     option :password, Types::Strict::String
-    option :use_ssl,  Types::Form::Bool, default: -> { true }
-    option :use_post, Types::Form::Bool, default: -> { true }
+    option :use_ssl,  Types::Form::Bool, default: proc { true }
+    option :use_post, Types::Form::Bool, default: proc { true }
   end
 
   base_url do |settings|
@@ -41,8 +42,8 @@ class SmsAero
     end
 
     responses format: :json do
-      response :success, 200, model: Success
-      response :failure, 200, model: Failure
+      response :success, 200, model: Answer
+      response :failure, 200, model: Answer
     end
   end
 end
