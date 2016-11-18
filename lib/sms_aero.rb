@@ -18,6 +18,7 @@ class SmsAero
   require_relative "sms_aero/models/answer"
 
   require_relative "sms_aero/operations/add_blacklist"
+  require_relative "sms_aero/operations/add_group"
 
   settings do
     option :user,     Types::Strict::String
