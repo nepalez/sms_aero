@@ -1,13 +1,8 @@
 class SmsAero
   class Tariff < Evil::Client::Model
-    attribute :"Direct channel",
-              Types::Coercible::Float,
-              as: :direct,
-              optional: true
-
-    attribute :"Digital channel",
-              Types::Coercible::Float,
-              as: :digital,
-              optional: true
+    attributes type: Types::Coercible::Float, optional: true do
+      attribute :"Direct channel",  as: :direct
+      attribute :"Digital channel", as: :digital
+    end
   end
 end
