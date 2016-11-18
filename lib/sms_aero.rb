@@ -20,6 +20,7 @@ class SmsAero
 
   require_relative "sms_aero/operations/add_blacklist"
   require_relative "sms_aero/operations/add_group"
+  require_relative "sms_aero/operations/add_phone"
   require_relative "sms_aero/operations/check_balance"
   require_relative "sms_aero/operations/check_groups"
   require_relative "sms_aero/operations/check_senders"
