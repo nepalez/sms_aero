@@ -19,6 +19,7 @@ class SmsAero
 
   require_relative "sms_aero/operations/add_blacklist"
   require_relative "sms_aero/operations/add_group"
+  require_relative "sms_aero/operations/check_balance"
 
   settings do
     option :user,     Types::Strict::String
