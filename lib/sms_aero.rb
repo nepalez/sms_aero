@@ -23,6 +23,7 @@ class SmsAero
   require_relative "sms_aero/operations/check_sending"
   require_relative "sms_aero/operations/check_status"
   require_relative "sms_aero/operations/delete_group"
+  require_relative "sms_aero/operations/delete_phone"
 
   settings do
     option :user,     Types::Strict::String
