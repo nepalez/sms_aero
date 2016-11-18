@@ -5,7 +5,7 @@ class SmsAero
     path { "delgroup" }
 
     query do
-      attribute :group, Types::Strict::String.constrained(filled: true)
+      attribute :group, Types::FilledString
     end
   end
 end

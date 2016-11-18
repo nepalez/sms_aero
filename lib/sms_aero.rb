@@ -11,6 +11,7 @@ class SmsAero
   require_relative "sms_aero/types/birthday"
   require_relative "sms_aero/types/channel"
   require_relative "sms_aero/types/digital"
+  require_relative "sms_aero/types/filled_string"
   require_relative "sms_aero/types/future"
   require_relative "sms_aero/types/phone"
   require_relative "sms_aero/types/sign_status"

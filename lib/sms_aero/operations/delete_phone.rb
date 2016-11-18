@@ -6,9 +6,7 @@ class SmsAero
 
     query do
       attribute :phone, Types::Phone
-      attribute :group,
-                Types::Strict::String.constrained(filled: true),
-                optional: true
+      attribute :group, Types::FilledString, optional: true
     end
   end
 end
