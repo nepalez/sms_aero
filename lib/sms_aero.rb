@@ -30,6 +30,7 @@ class SmsAero
   require_relative "sms_aero/operations/delete_group"
   require_relative "sms_aero/operations/delete_phone"
   require_relative "sms_aero/operations/send_sms"
+  require_relative "sms_aero/operations/send_to_group"
 
   settings do
     option :user,     Types::FilledString
