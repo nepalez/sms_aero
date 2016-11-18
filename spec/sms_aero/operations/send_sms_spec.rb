@@ -127,7 +127,7 @@ RSpec.describe "operations[:send_sms]", "#call" do
     end
   end
 
-  context "with custom digital:" do
+  context "with digital channel:" do
     let(:host)  { "https://gate.smsaero.ru/send" }
     let(:query) do
       "answer=json&digital=1&password=QUX&text=Hi&to=79093828445&user=BAZ"
