@@ -105,11 +105,11 @@ RSpec.describe SmsAero, "#send_to_group" do
   context "with valid date:" do
     let(:host)  { "https://gate.smsaero.ru/sendtogroup" }
     let(:query) do
-      "answer=json&group=all&date=4122133200" \
+      "answer=json&group=all&date=4122144000" \
       "&password=QUX&text=Hi&type=2&user=BAZ"
     end
 
-    before { params[:date] = Date.parse("2100-08-17") }
+    before { params[:date] = DateTime.parse("2100-08-17 00:00:00 UTC") }
 
     it "sends a request" do
       subject

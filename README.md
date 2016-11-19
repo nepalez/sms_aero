@@ -1,8 +1,21 @@
 # SmsAero
 
+[![Gem Version][gem-badger]][gem]
+[![Build Status][travis-badger]][travis]
+[![Dependency Status][gemnasium-badger]][gemnasium]
+[![Code Climate][codeclimate-badger]][codeclimate]
+
 HTTP(s) client to [SMS Aero service API][sms-aero].
 
 [sms-aero]: https://smsaero.ru/api/description/
+[codeclimate-badger]: https://img.shields.io/codeclimate/github/nepalez/sms_aero.svg?style=flat
+[codeclimate]: https://codeclimate.com/github/nepalez/sms_aero
+[gem-badger]: https://img.shields.io/gem/v/sms_aero.svg?style=flat
+[gem]: https://rubygems.org/gems/sms_aero
+[gemnasium-badger]: https://img.shields.io/gemnasium/nepalez/sms_aero.svg?style=flat
+[gemnasium]: https://gemnasium.com/nepalez/sms_aero
+[travis-badger]: https://img.shields.io/travis/nepalez/sms_aero/master.svg?style=flat
+[travis]: https://travis-ci.org/nepalez/sms_aero
 
 ## Synopsis
 
