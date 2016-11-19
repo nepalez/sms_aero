@@ -6,6 +6,7 @@ class SmsAero
 
     query do
       attribute :phone, Types::Phone
+      attribute :group, Types::FilledString, optional: true
       attribute :lname, Types::FilledString, optional: true
       attribute :fname, Types::FilledString, optional: true
       attribute :sname, Types::FilledString, optional: true

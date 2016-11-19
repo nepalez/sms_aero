@@ -152,6 +152,28 @@ RSpec.describe SmsAero, "#add_phone" do
     end
   end
 
+  context "with valid group:" do
+    let(:host)  { "https://gate.smsaero.ru/addphone" }
+    let(:query) do
+      "answer=json&group=qux&password=PASSWORD&phone=79093828445&user=LOGIN"
+    end
+
+    before { params[:group] = "qux" }
+
+    it "sends a request" do
+      subject
+      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+    end
+  end
+
+  context "with invalid group:" do
+    before { params[:group] = "" }
+
+    it "raises an exception" do
+      expect { subject }.to raise_error(TypeError)
+    end
+  end
+
   context "with valid param:" do
     let(:host)  { "https://gate.smsaero.ru/addphone" }
     let(:query) do

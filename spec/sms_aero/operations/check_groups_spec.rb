@@ -2,7 +2,7 @@ RSpec.describe SmsAero, "#check_groups" do
   let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
   let(:client)   { described_class.new(settings) }
   let(:params)   { { foo: "bar" } }
-  let(:answer)   { { result: "accepted" } }
+  let(:answer)   { { result: "accepted", reason: %w(customers employee) } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
   subject { client.check_groups(params) }
@@ -17,8 +17,8 @@ RSpec.describe SmsAero, "#check_groups" do
     end
 
     it "returns success" do
-      expect(subject).to be_kind_of SmsAero::Answer
       expect(subject.result).to eq "accepted"
+      expect(subject.channels).to eq %w(customers employee)
     end
   end
 
