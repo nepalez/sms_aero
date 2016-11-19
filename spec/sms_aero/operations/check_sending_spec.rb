@@ -1,7 +1,7 @@
 RSpec.describe SmsAero, "#check_sending" do
   let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
   let(:client)   { described_class.new(settings) }
-  let(:params)   { { id:  "foobar" } }
+  let(:params)   { { id: "foobar" } }
   let(:answer)   { { result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }

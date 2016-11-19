@@ -20,5 +20,5 @@ Style/Documentation:
 Style/ClassAndModuleChildren:
   Enabled: false
 
-Style/TernaryParentheses:
-  Enabled: true
+Style/SpaceInLambdaLiteral:
+  Enabled: false

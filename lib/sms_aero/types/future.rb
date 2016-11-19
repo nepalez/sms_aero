@@ -8,7 +8,7 @@ module SmsAero::Types
       time ||= ::Time.parse(value.to_s) unless value.is_a? Numeric
       number = time.to_i
 
-      (number > ::Time.now.to_i) ? number : raise(error)
+      number > ::Time.now.to_i ? number : raise(error)
     rescue
       raise error
     end
