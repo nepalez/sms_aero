@@ -1,8 +1,8 @@
-class SmsAero::Answer < Evil::Client::Model
-  attribute :result, default: proc { "accepted" }
-  attribute :reason, default: proc { nil }
-
-  def success?
-    true
+class SmsAero
+  class Answer < Evil::Client::Model
+    attribute :reason, default: proc { nil }
+    attribute :result,
+              Types::FilledString.constructor(&:strip),
+              default: proc { "accepted" }
   end
 end

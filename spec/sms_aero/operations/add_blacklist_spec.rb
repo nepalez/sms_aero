@@ -1,12 +1,11 @@
-RSpec.describe "operations[:add_blacklist]", "#call" do
-  let(:settings)  { { user: "LOGIN", password: "PASSWORD" } }
-  let(:client)    { SmsAero.new settings }
-  let(:operation) { client.operations[:add_blacklist] }
-  let(:params)    { { phone: "+7 (018) 132-4388" } }
-  let(:answer)    { { result: "accepted" } }
+RSpec.describe SmsAero, "#add_blacklist" do
+  let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
+  let(:client)   { described_class.new(settings) }
+  let(:params)   { { phone: "+7 (018) 132-4388" } }
+  let(:answer)   { { result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
-  subject { operation.call(params) }
+  subject { client.add_blacklist(params) }
 
   context "using ssl via POST:" do
     let(:host)  { "https://gate.smsaero.ru/addblacklist" }
@@ -41,7 +40,7 @@ RSpec.describe "operations[:add_blacklist]", "#call" do
 
     before { settings[:use_ssl] = false }
 
-    it "sends a request" do
+    it "sends a request via http" do
       subject
       expect(a_request(:post, "#{host}?#{query}")).to have_been_made
     end

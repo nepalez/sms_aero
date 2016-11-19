@@ -1,12 +1,11 @@
-RSpec.describe "operations[:check_senders]", "#call" do
-  let(:settings)  { { user: "LOGIN", password: "PASSWORD" } }
-  let(:client)    { SmsAero.new settings }
-  let(:operation) { client.operations[:check_senders] }
-  let(:params)    { { sign: "baz", foo: "bar" } }
-  let(:answer)    { { data: %w(peter paul) } }
+RSpec.describe SmsAero, "#check_senders" do
+  let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
+  let(:client)   { described_class.new(settings) }
+  let(:params)   { { sign: "baz", foo: "bar" } }
+  let(:answer)   { { data: %w(peter paul) } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
-  subject { operation.call(params) }
+  subject { client.check_senders(params) }
 
   context "using ssl via POST:" do
     let(:host)  { "https://gate.smsaero.ru/senders" }

@@ -1,12 +1,11 @@
-RSpec.describe "operations[:send_to_group]", "#call" do
-  let(:settings)  { { user: "BAZ", password: "QUX" } }
-  let(:client)    { SmsAero.new settings }
-  let(:operation) { client.operations[:send_to_group] }
-  let(:params)    { { text: "Hi" } }
-  let(:answer)    { { id: 3898, result: "accepted" } }
+RSpec.describe SmsAero, "#send_to_group" do
+  let(:settings) { { user: "BAZ", password: "QUX" } }
+  let(:client)   { described_class.new(settings) }
+  let(:params)   { { text: "Hi" } }
+  let(:answer)   { { id: 3898, result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
-  subject { operation.call(params) }
+  subject { client.send_to_group(params) }
 
   context "using ssl via POST:" do
     let(:host)  { "https://gate.smsaero.ru/sendtogroup" }

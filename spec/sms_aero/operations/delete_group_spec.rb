@@ -1,12 +1,11 @@
-RSpec.describe "operations[:delete_group]", "#call" do
-  let(:settings)  { { user: "LOGIN", password: "PASSWORD" } }
-  let(:client)    { SmsAero.new settings }
-  let(:operation) { client.operations[:delete_group] }
-  let(:params)    { { group:  "foobar" } }
-  let(:answer)    { { result: "accepted" } }
+RSpec.describe SmsAero, "#delete_group" do
+  let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
+  let(:client)   { described_class.new(settings) }
+  let(:params)   { { group:  "foobar" } }
+  let(:answer)   { { result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
-  subject { operation.call(params) }
+  subject { client.delete_group(params) }
 
   context "using ssl via POST:" do
     let(:host)  { "https://gate.smsaero.ru/delgroup" }

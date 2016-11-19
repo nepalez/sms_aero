@@ -41,4 +41,15 @@ class SmsAero
       response :failure, 200, model: Answer
     end
   end
+
+  private
+
+  def method_missing(name, *args)
+    op = operations[name.to_sym]
+    op ? op.call(*args) : super
+  end
+
+  def respond_to_missing?(name, *)
+    operations.key? name.to_sym
+  end
 end

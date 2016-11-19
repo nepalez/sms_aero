@@ -1,12 +1,11 @@
-RSpec.describe "operations[:check_tariff]", "#call" do
-  let(:settings)  { { user: "LOGIN", password: "PASSWORD" } }
-  let(:client)    { SmsAero.new settings }
-  let(:operation) { client.operations[:check_tariff] }
-  let(:params)    { {} }
+RSpec.describe SmsAero, "#check_tariff" do
+  let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
+  let(:client)   { described_class.new(settings) }
+  let(:params)   { {} }
   let(:answer) { { result: "accepted", reason: { "Direct channel": "1.75" } } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
-  subject { operation.call(params) }
+  subject { client.check_tariff(params) }
 
   context "using ssl via POST:" do
     let(:host)  { "https://gate.smsaero.ru/checktarif" }

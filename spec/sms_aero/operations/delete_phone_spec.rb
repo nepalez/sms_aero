@@ -1,12 +1,11 @@
-RSpec.describe "operations[:delete_phone]", "#call" do
-  let(:settings)  { { user: "LOGIN", password: "PASSWORD" } }
-  let(:client)    { SmsAero.new settings }
-  let(:operation) { client.operations[:delete_phone] }
-  let(:params)    { { group:  "foo", phone: "+7(002)034-5678" } }
-  let(:answer)    { { result: "accepted" } }
+RSpec.describe SmsAero, "#delete_phone" do
+  let(:settings) { { user: "LOGIN", password: "PASSWORD" } }
+  let(:client)   { described_class.new(settings) }
+  let(:params)   { { group:  "foo", phone: "+7(002)034-5678" } }
+  let(:answer)   { { result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
-  subject { operation.call(params) }
+  subject { client.delete_phone(params) }
 
   context "using ssl via POST:" do
     let(:host)  { "https://gate.smsaero.ru/delphone" }
