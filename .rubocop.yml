@@ -5,6 +5,13 @@ AllCops:
   StyleGuideCopsOnly: true
   TargetRubyVersion:  2.3
 
+Metrics/LineLength:
+  AllowHeredoc: true
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+  
 Style/Lambda:
   Enabled: false
 

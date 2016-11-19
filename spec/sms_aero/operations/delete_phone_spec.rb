@@ -8,14 +8,18 @@ RSpec.describe SmsAero, "#delete_phone" do
   subject { client.delete_phone(params) }
 
   context "using ssl via POST:" do
-    let(:host)  { "https://gate.smsaero.ru/delphone" }
-    let(:query) do
-      "answer=json&group=foo&password=PASSWORD&phone=70020345678&user=LOGIN"
+    let(:url) do
+      "https://gate.smsaero.ru/delphone?" \
+      "answer=json&" \
+      "group=foo&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "phone=70020345678&" \
+      "user=LOGIN"
     end
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
 
     it "returns success" do
@@ -25,70 +29,55 @@ RSpec.describe SmsAero, "#delete_phone" do
   end
 
   context "via GET:" do
-    let(:host)  { "https://gate.smsaero.ru/delphone" }
-    let(:query) do
-      "answer=json&group=foo&password=PASSWORD&phone=70020345678&user=LOGIN"
+    let(:url) do
+      "https://gate.smsaero.ru/delphone?" \
+      "answer=json&" \
+      "group=foo&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "phone=70020345678&" \
+      "user=LOGIN"
     end
 
     before { settings[:use_post] = false }
 
     it "sends a request" do
       subject
-      expect(a_request(:get, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:get, url)).to have_been_made
     end
   end
 
   context "not using ssl:" do
-    let(:host)  { "http://gate.smsaero.ru/delphone" }
-    let(:query) do
-      "answer=json&group=foo&password=PASSWORD&phone=70020345678&user=LOGIN"
+    let(:url) do
+      "http://gate.smsaero.ru/delphone?" \
+      "answer=json&" \
+      "group=foo&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "phone=70020345678&" \
+      "user=LOGIN"
     end
 
     before { settings[:use_ssl] = false }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
-    end
-  end
-
-  context "with custom user:" do
-    let(:host)  { "https://gate.smsaero.ru/delphone" }
-    let(:query) do
-      "answer=json&group=foo&password=PASSWORD&phone=70020345678&user=USER"
-    end
-
-    before { params[:user] = "USER" }
-
-    it "sends a request" do
-      subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
-    end
-  end
-
-  context "with custom password:" do
-    let(:host)  { "https://gate.smsaero.ru/delphone" }
-    let(:query) do
-      "answer=json&group=foo&password=PSWD&phone=70020345678&user=LOGIN"
-    end
-
-    before { params[:password] = "PSWD" }
-
-    it "sends a request" do
-      subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 
   context "without a group:" do
-    let(:host)  { "https://gate.smsaero.ru/delphone" }
-    let(:query) { "answer=json&password=PASSWORD&phone=70020345678&user=LOGIN" }
+    let(:url) do
+      "https://gate.smsaero.ru/delphone?" \
+      "answer=json&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "phone=70020345678&" \
+      "user=LOGIN"
+    end
 
     before { params.delete :group }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 

@@ -8,14 +8,19 @@ RSpec.describe SmsAero, "#send_sms" do
   subject { client.send_sms(params) }
 
   context "using ssl via POST:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&password=QUX&text=Hi&to=79093828445&type=2&user=BAZ"
+    let(:url) do
+      "https://gate.smsaero.ru/send?" \
+      "answer=json&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=2&" \
+      "user=BAZ"
     end
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
 
     it "returns success" do
@@ -25,58 +30,40 @@ RSpec.describe SmsAero, "#send_sms" do
   end
 
   context "via GET:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&password=QUX&text=Hi&to=79093828445&type=2&user=BAZ"
+    let(:url) do
+      "https://gate.smsaero.ru/send?" \
+      "answer=json&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=2&" \
+      "user=BAZ"
     end
 
     before { settings[:use_post] = false }
 
     it "sends a request" do
       subject
-      expect(a_request(:get, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:get, url)).to have_been_made
     end
   end
 
   context "not using ssl:" do
-    let(:host)  { "http://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&password=QUX&text=Hi&to=79093828445&type=2&user=BAZ"
+    let(:url) do
+      "http://gate.smsaero.ru/send?" \
+      "answer=json&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=2&" \
+      "user=BAZ"
     end
 
     before { settings[:use_ssl] = false }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
-    end
-  end
-
-  context "with custom user:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&password=QUX&text=Hi&to=79093828445&type=2&user=USER"
-    end
-
-    before { params[:user] = "USER" }
-
-    it "sends a request" do
-      subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
-    end
-  end
-
-  context "with custom password:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&password=PSWD&text=Hi&to=79093828445&type=2&user=BAZ"
-    end
-
-    before { params[:password] = "PSWD" }
-
-    it "sends a request" do
-      subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 
@@ -97,17 +84,22 @@ RSpec.describe SmsAero, "#send_sms" do
   end
 
   context "with valid date:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&date=4122144000&password=QUX&text=Hi&" \
-      "to=79093828445&type=2&user=BAZ"
+    let(:url) do
+      "https://gate.smsaero.ru/send?" \
+      "answer=json&" \
+      "date=4122144000&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=2&" \
+      "user=BAZ"
     end
 
     before { params[:date] = DateTime.parse("2100-08-17 00:00:00 UTC") }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 
@@ -128,30 +120,40 @@ RSpec.describe SmsAero, "#send_sms" do
   end
 
   context "with digital channel:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&digital=1&password=QUX&text=Hi&to=79093828445&user=BAZ"
+    let(:url) do
+      "https://gate.smsaero.ru/send?" \
+      "answer=json&" \
+      "digital=1&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "user=BAZ"
     end
 
     before { params[:digital] = true }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 
   context "with valid type:" do
-    let(:host)  { "https://gate.smsaero.ru/send" }
-    let(:query) do
-      "answer=json&password=QUX&text=Hi&to=79093828445&type=3&user=BAZ"
+    let(:url) do
+      "https://gate.smsaero.ru/send?" \
+      "answer=json&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=3&" \
+      "user=BAZ"
     end
 
     before { params[:type] = 3 }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 
@@ -164,16 +166,21 @@ RSpec.describe SmsAero, "#send_sms" do
   end
 
   context "with test:" do
-    let(:host)  { "https://gate.smsaero.ru/testsend" }
-    let(:query) do
-      "answer=json&password=QUX&text=Hi&to=79093828445&type=2&user=BAZ"
+    let(:url) do
+      "https://gate.smsaero.ru/testsend?" \
+      "answer=json&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=2&" \
+      "user=BAZ"
     end
 
     before { params[:test] = true }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 end

@@ -8,12 +8,16 @@ RSpec.describe SmsAero, "#check_balance" do
   subject { client.check_balance(params) }
 
   context "using ssl via POST:" do
-    let(:host)  { "https://gate.smsaero.ru/balance" }
-    let(:query) { "answer=json&password=PASSWORD&user=LOGIN" }
+    let(:url) do
+      "https://gate.smsaero.ru/balance?" \
+      "answer=json&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "user=LOGIN"
+    end
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
 
     it "returns success" do
@@ -25,50 +29,34 @@ RSpec.describe SmsAero, "#check_balance" do
   end
 
   context "via GET:" do
-    let(:host)  { "https://gate.smsaero.ru/balance" }
-    let(:query) { "answer=json&password=PASSWORD&user=LOGIN" }
+    let(:url) do
+      "https://gate.smsaero.ru/balance?" \
+      "answer=json&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "user=LOGIN"
+    end
 
     before { settings[:use_post] = false }
 
     it "sends a request" do
       subject
-      expect(a_request(:get, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:get, url)).to have_been_made
     end
   end
 
   context "not using ssl:" do
-    let(:host)  { "http://gate.smsaero.ru/balance" }
-    let(:query) { "answer=json&password=PASSWORD&user=LOGIN" }
+    let(:url) do
+      "http://gate.smsaero.ru/balance?" \
+      "answer=json&" \
+      "password=319f4d26e3c536b5dd871bb2c52e3178&" \
+      "user=LOGIN"
+    end
 
     before { settings[:use_ssl] = false }
 
     it "sends a request" do
       subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
-    end
-  end
-
-  context "with custom user:" do
-    let(:host)  { "https://gate.smsaero.ru/balance" }
-    let(:query) { "answer=json&password=PASSWORD&user=USER" }
-
-    before { params[:user] = "USER" }
-
-    it "sends a request" do
-      subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
-    end
-  end
-
-  context "with custom password:" do
-    let(:host)  { "https://gate.smsaero.ru/balance" }
-    let(:query) { "answer=json&password=PSWD&user=LOGIN" }
-
-    before { params[:password] = "PSWD" }
-
-    it "sends a request" do
-      subject
-      expect(a_request(:post, "#{host}?#{query}")).to have_been_made
+      expect(a_request(:post, url)).to have_been_made
     end
   end
 

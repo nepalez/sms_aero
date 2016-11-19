@@ -16,7 +16,7 @@ class SmsAero
 
   settings do
     option :user,     Types::FilledString
-    option :password, Types::FilledString
+    option :password, Types::Password
     option :use_ssl,  Types::Form::Bool, default: proc { true }
     option :use_post, Types::Form::Bool, default: proc { true }
   end
@@ -30,10 +30,10 @@ class SmsAero
 
     http_method(settings.use_post ? :post : :get)
 
-    security do |user: nil, password: nil, **|
-      key_auth :user,     user     || settings.user,     using: :query
-      key_auth :password, password || settings.password, using: :query
-      key_auth :answer,   "json",                        using: :query
+    security do
+      key_auth :user,     settings.user,     using: :query
+      key_auth :password, settings.password, using: :query
+      key_auth :answer,   "json",            using: :query
     end
 
     responses format: :json do
