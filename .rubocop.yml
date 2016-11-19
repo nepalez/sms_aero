@@ -10,3 +10,15 @@ Style/Lambda:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/TernaryParentheses:
+  Enabled: true

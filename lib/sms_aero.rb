@@ -22,7 +22,7 @@ class SmsAero
   end
 
   base_url do |settings|
-    "http#{"s" if settings.use_ssl}://gate.smsaero.ru/"
+    "http#{'s' if settings.use_ssl}://gate.smsaero.ru/"
   end
 
   operation do |settings|

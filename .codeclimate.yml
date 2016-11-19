@@ -5,3 +5,7 @@ engines:
     checks:
       Rubocop/Style/FrozenStringLiteralComment:
         enabled: false
+      Rubocop/Style/Documentation:
+        enabled: false
+      Rubocop/Style/ClassAndModuleChildren:
+        enabled: false

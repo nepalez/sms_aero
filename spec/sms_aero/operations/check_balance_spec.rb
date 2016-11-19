@@ -78,7 +78,7 @@ RSpec.describe SmsAero, "#check_balance" do
     it "returns result" do
       expect(subject).to be_kind_of SmsAero::Answer
 
-      expect(subject.result).to  eq "rejected"
+      expect(subject.result).to eq "rejected"
       expect(subject).not_to respond_to :balance
     end
   end

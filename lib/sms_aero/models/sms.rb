@@ -5,11 +5,11 @@ class SmsAero
     attribute :date,    Types::Future,  optional: true
     attribute :digital, Types::Digital, optional: true
     attribute :type,    Types::Channel, default: -> (*) do
-                                          case digital
-                                          when Dry::Initializer::UNDEFINED
-                                            2
-                                          else Dry::Initializer::UNDEFINED
-                                          end
-                                        end
+                                                   if digital == 1
+                                                     Dry::Initializer::UNDEFINED
+                                                   else
+                                                     2
+                                                   end
+                                                 end
   end
 end
