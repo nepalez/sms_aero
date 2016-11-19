@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency "dry-types", "~> 0.9.1"
   gem.add_runtime_dependency "evil-client", "~> 0.3.0"
 
-  gem.add_development_dependency "rake", "~> 10.0"
+  gem.add_development_dependency "rake", "~> 11.0"
   gem.add_development_dependency "rspec", "~> 3.0"
   gem.add_development_dependency "rspec-its"
   gem.add_development_dependency "rubocop", "~> 0.42"
