@@ -11,3 +11,8 @@ engines:
         enabled: false
       Rubocop/Style/SpaceInLambdaLiteral:
         enabled: false
+  reek:
+    enabled: true
+ratings:
+  paths:
+    - "lib/**.rb"
