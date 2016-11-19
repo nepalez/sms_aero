@@ -8,5 +8,5 @@ group :development, :test do
   gem "pry-byebug", platform: :mri
 end
 
-gem "evil-client",     github: "evilmartians/evil-client", branch: "master"
-gem "dry-initializer", github: "dry-rb/dry-initializer",   branch: "master"
+gem "evil-client",     git: "https://github.com/evilmartians/evil-client"
+gem "dry-initializer", git: "https://github.com/dry-rb/dry-initializer"
