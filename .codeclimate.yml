@@ -1,17 +1,12 @@
 ---
 engines:
-  rubocop:
+  bundler-audit:
     enabled: true
-    checks:
-      Rubocop/Style/FrozenStringLiteralComment:
-        enabled: false
-      Rubocop/Style/Documentation:
-        enabled: false
-      Rubocop/Style/ClassAndModuleChildren:
-        enabled: false
-      Rubocop/Style/SpaceInLambdaLiteral:
-        enabled: false
   reek:
+    enabled: true
+  fixme:
+    enabled: true
+  rubocop:
     enabled: true
 ratings:
   paths:
