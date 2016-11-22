@@ -10,7 +10,7 @@ class SmsAero
 
   # Definitions for types, models, and API operations
   %w(types models operations).each do |folder|
-    path = File.expand_path("lib/sms_aero/#{folder}/*.rb")
+    path = File.expand_path("../sms_aero/#{folder}/*.rb", __FILE__)
     Dir[path].each { |file| require(file) }
   end
 
