@@ -1,7 +1,7 @@
 RSpec.describe SmsAero, "#send_sms" do
   let(:settings) { { user: "BAZ", password: "QUX" } }
   let(:client)   { described_class.new(settings) }
-  let(:params)   { { text: "Hi", to: "+7 (909) 382-84-45" } }
+  let(:params)   { { text: "Hi", to: "+7 (909) 382-84-45", from: "Qux" } }
   let(:answer)   { { id: 3898, result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
@@ -11,6 +11,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "https://gate.smsaero.ru/send?" \
       "answer=json&" \
+      "from=Qux&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
@@ -33,6 +34,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "https://gate.smsaero.ru/send?" \
       "answer=json&" \
+      "from=Qux&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
@@ -52,6 +54,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "http://gate.smsaero.ru/send?" \
       "answer=json&" \
+      "from=Qux&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
@@ -87,6 +90,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "https://gate.smsaero.ru/send?" \
       "answer=json&" \
+      "from=Qux&" \
       "date=4122144000&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
@@ -123,6 +127,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "https://gate.smsaero.ru/send?" \
       "answer=json&" \
+      "from=Qux&" \
       "digital=1&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
@@ -142,6 +147,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "https://gate.smsaero.ru/send?" \
       "answer=json&" \
+      "from=Qux&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
@@ -169,6 +175,7 @@ RSpec.describe SmsAero, "#send_sms" do
     let(:url) do
       "https://gate.smsaero.ru/testsend?" \
       "answer=json&" \
+      "from=Qux&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \

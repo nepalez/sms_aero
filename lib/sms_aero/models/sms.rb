@@ -1,6 +1,7 @@
 # Describes an SMS that can be send to either a phone or a group
 class SmsAero
   class Sms < Evil::Struct
+    attribute :from,    Types::FilledString
     attribute :text,    Types::FilledString
     attribute :date,    Types::Future,  optional: true
     attribute :digital, Types::Digital, optional: true

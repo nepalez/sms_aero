@@ -1,7 +1,7 @@
 RSpec.describe SmsAero, "#send_to_group" do
   let(:settings) { { user: "BAZ", password: "QUX" } }
   let(:client)   { described_class.new(settings) }
-  let(:params)   { { text: "Hi" } }
+  let(:params)   { { text: "Hi", from: "Qux" } }
   let(:answer)   { { id: 3898, result: "accepted" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
@@ -11,6 +11,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "https://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=all&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
@@ -33,6 +34,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "https://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=all&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
@@ -52,6 +54,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "http://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=all&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
@@ -71,6 +74,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "https://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=foo&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
@@ -98,6 +102,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "https://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=all&" \
       "date=4122144000&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
@@ -134,6 +139,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "https://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=all&" \
       "digital=1&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
@@ -153,6 +159,7 @@ RSpec.describe SmsAero, "#send_to_group" do
     let(:url) do
       "https://gate.smsaero.ru/sendtogroup?" \
       "answer=json&" \
+      "from=Qux&" \
       "group=all&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
