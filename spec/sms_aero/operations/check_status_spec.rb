@@ -73,7 +73,7 @@ RSpec.describe SmsAero, "#check_status" do
     before { params.delete :id }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(KeyError)
+      expect { subject }.to raise_error(ArgumentError)
     end
   end
 end

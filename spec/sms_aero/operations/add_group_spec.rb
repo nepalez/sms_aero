@@ -73,7 +73,7 @@ RSpec.describe SmsAero, "#add_group" do
     before { params.delete :group }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(KeyError)
+      expect { subject }.to raise_error(ArgumentError)
     end
   end
 end

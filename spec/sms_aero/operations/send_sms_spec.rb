@@ -82,7 +82,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params.delete :to }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(KeyError)
+      expect { subject }.to raise_error(ArgumentError)
     end
   end
 

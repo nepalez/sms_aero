@@ -72,7 +72,7 @@ RSpec.describe SmsAero, "#check_sign" do
     before { params.delete :sign }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(KeyError)
+      expect { subject }.to raise_error(ArgumentError)
     end
   end
 end
