@@ -2,15 +2,18 @@
 sudo:     false
 language: ruby
 cache:    bundler
+before_install:
+  - gem install bundler --no-ri --no-rdoc
+  - gem update --system
 script:
   - bundle exec rspec
   - bundle exec rubocop
 rvm:
-  - '2.3.0'
+  - 2.3.0
+  - 2.4.0
   - ruby-head
   - jruby-9.1.0.0
   - jruby-head
-before_install: gem install bundler -v 1.12.5
 matrix:
   allow_failures:
     - rvm: ruby-head
