@@ -1,9 +1,9 @@
 class SmsAero
-  operation :send_sms do
+  operation :send_sms do |settings|
     documentation "https://smsaero.ru/api/description/#send-sms"
 
     path do |test: false, **|
-      test ? "testsend" : "send"
+      settings.test || test ? "testsend" : "send"
     end
 
     query model: Sms do

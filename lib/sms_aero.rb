@@ -19,6 +19,7 @@ class SmsAero
     option :password, Types::Password
     option :use_ssl,  Types::Form::Bool, default: proc { true }
     option :use_post, Types::Form::Bool, default: proc { true }
+    option :test,     Types::Form::Bool, default: proc { false }
   end
 
   base_url do |settings|

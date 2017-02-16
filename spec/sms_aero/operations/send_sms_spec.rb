@@ -190,4 +190,24 @@ RSpec.describe SmsAero, "#send_sms" do
       expect(a_request(:post, url)).to have_been_made
     end
   end
+
+  context "with preconfigured test:" do
+    let(:url) do
+      "https://gate.smsaero.ru/testsend?" \
+      "answer=json&" \
+      "from=Qux&" \
+      "password=9d1e4709d6a41407ab34cf99c7085f79&" \
+      "text=Hi&" \
+      "to=79093828445&" \
+      "type=2&" \
+      "user=BAZ"
+    end
+
+    before { settings[:test] = true }
+
+    it "sends a request" do
+      subject
+      expect(a_request(:post, url)).to have_been_made
+    end
+  end
 end
