@@ -26,7 +26,9 @@ See [operation specs][specs] for more verbose examples.
 Initialize a client with user and password:
 
 ```ruby
-client = SmsAero.new user: "joe", password: "foobar"
+client = SmsAero.new user: "joe",        # required
+                     password: "foobar", # required
+                     test: true          # optional - to send test SMS by default
 ```
 
 Then send requests:
