@@ -29,3 +29,6 @@ Style/ClassAndModuleChildren:
 
 Style/SpaceInLambdaLiteral:
   Enabled: false
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
