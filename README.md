@@ -39,8 +39,9 @@ answer = client.send_sms text: "Hello!",
                          date: "2100/01/12", # Date, Time, DateTime are accepted as well
                          type: 3 # see API docs for details
 
-answer.result # => "accepted"
-answer.id     # => "38293"
+answer.result  # => "accepted"
+answer.id      # => "38293"
+answer.success # => true (checks whether id was returned)
 ```
 
 ```ruby
