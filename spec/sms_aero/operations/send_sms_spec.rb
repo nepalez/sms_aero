@@ -27,6 +27,7 @@ RSpec.describe SmsAero, "#send_sms" do
     it "returns success" do
       expect(subject).to be_kind_of SmsAero::Answer
       expect(subject.result).to eq "accepted"
+      expect(subject.success).to eq true
     end
   end
 

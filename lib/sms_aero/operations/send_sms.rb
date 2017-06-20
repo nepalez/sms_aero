@@ -11,7 +11,8 @@ class SmsAero
     end
 
     response :success, 200, format: :json, model: Answer do
-      attribute :id, Types::Coercible::String
+      attribute :id, proc(&:to_s)
+      attribute :success, default: proc { !id.empty? }
     end
   end
 end
