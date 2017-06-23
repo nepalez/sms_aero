@@ -1,6 +1,6 @@
 Gem::Specification.new do |gem|
   gem.name     = "sms_aero"
-  gem.version  = "0.0.7"
+  gem.version  = "0.0.8"
   gem.author   = "Andrew Kozin (nepalez)"
   gem.email    = "andrew.kozin@gmail.com"
   gem.homepage = "https://github.com/nepalez/sms_aero"
@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = ">= 2.2"
 
-  gem.add_runtime_dependency "dry-types", "> 0.9"
+  gem.add_runtime_dependency "dry-types",   ">= 0.9"
   gem.add_runtime_dependency "evil-struct", ">= 0.0.4"
   gem.add_runtime_dependency "evil-client", "~> 0.3.2"
 
