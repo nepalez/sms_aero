@@ -3,6 +3,7 @@ RSpec.describe SmsAero, "#send_sms" do
   let(:client)   { described_class.new(settings) }
   let(:params)   { { text: "Hi", to: "+7 (909) 382-84-45", from: "Qux" } }
   let(:answer)   { { id: 3898, result: "accepted" } }
+  let(:failure)  { { reason: nil, result: "no credits" } }
 
   before  { stub_request(:any, //).to_return(body: answer.to_json) }
   subject { client.send_sms(params) }
@@ -24,10 +25,20 @@ RSpec.describe SmsAero, "#send_sms" do
       expect(a_request(:post, url)).to have_been_made
     end
 
-    it "returns success" do
+    it "returns successful answer" do
       expect(subject).to be_kind_of SmsAero::Answer
       expect(subject.result).to eq "accepted"
+      expect(subject.id).to eq "3898"
       expect(subject.success).to eq true
+    end
+
+    context "with a failure:" do
+      before { stub_request(:any, //).to_return(body: failure.to_json) }
+
+      it "returns unsuccessful answer" do
+        expect(subject).to be_kind_of SmsAero::Answer
+        expect(subject.success).to eq false
+      end
     end
   end
 

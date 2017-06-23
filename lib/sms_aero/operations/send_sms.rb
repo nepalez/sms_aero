@@ -12,7 +12,11 @@ class SmsAero
 
     response :success, 200, format: :json, model: Answer do
       attribute :id, proc(&:to_s)
-      attribute :success, default: proc { !id.empty? }
+      attribute :success, default: proc { id != "" }
+    end
+
+    response :failure, 200, format: :json, model: Answer do
+      attribute :success, default: proc { false }
     end
   end
 end
