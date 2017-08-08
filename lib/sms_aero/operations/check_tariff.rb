@@ -1,12 +1,7 @@
 class SmsAero
   operation :check_tariff do
-    documentation "https://smsaero.ru/api/description/#get-balance"
+    path "checktarif"
 
-    path { "checktarif" }
-
-    response :success, 200, format: :json do
-      attribute :result, Types::FilledString
-      attribute :reason, Tariff, as: :tariff
-    end
+    response(200) { |*res| Response::WithTariff.build(*res) }
   end
 end

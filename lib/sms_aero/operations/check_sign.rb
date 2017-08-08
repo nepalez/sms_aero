@@ -1,15 +1,13 @@
 class SmsAero
   operation :check_sign do
-    documentation "https://smsaero.ru/api/description/#signs"
+    option :sign, FilledString
 
-    path { "sign" }
+    path  "sign"
+    query { { sign: sign } }
 
-    query do
-      attribute :sign, Types::FilledString
-    end
-
-    response :success, 200, format: :json do
-      attribute :data, Types::Array.member(Types::SignStatus), as: :statuses
+    response(200) do |_, _, body|
+      data = JSON.parse(body.first)
+      Response::WithStatuses.new(data: data)
     end
   end
 end

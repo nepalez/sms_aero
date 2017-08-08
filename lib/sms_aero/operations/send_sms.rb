@@ -1,22 +1,18 @@
 class SmsAero
-  operation :send_sms do |settings|
-    documentation "https://smsaero.ru/api/description/#send-sms"
+  operation :send_sms do
+    option :to,      Phone, optional: true
+    option :group,   Group, optional: true
+    option :from,    FilledString
+    option :text,    FilledString
+    option :date,    Future,  optional: true
+    option :digital, Digital, optional: true
+    option :type,    Channel, default: -> { 2 unless digital == 1 }
 
-    path do |test: false, **|
-      settings.test || test ? "testsend" : "send"
-    end
+    validate(:address_given) { !to ^ !group }
 
-    query model: Sms do
-      attribute :to, Types::Phone
-    end
+    path  { group && "sendtogroup" || testsend && "testsend" || "send" }
+    query { options.slice(:to, :group, :from, :text, :date, :digital, :type) }
 
-    response :success, 200, format: :json, model: Answer do
-      attribute :id, proc(&:to_s)
-      attribute :success, default: proc { id != "" }
-    end
-
-    response :failure, 200, format: :json, model: Answer do
-      attribute :success, default: proc { false }
-    end
+    response(200) { |*res| Response::WithId.build(*res) }
   end
 end

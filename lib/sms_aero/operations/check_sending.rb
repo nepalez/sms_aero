@@ -1,11 +1,8 @@
 class SmsAero
   operation :check_sending do
-    documentation "https://smsaero.ru/api/description/#check-status"
+    option :id, FilledString
 
-    path { "checksending" }
-
-    query do
-      attribute :id, Types::Coercible::String.constrained(filled: true)
-    end
+    path  "checksending"
+    query { { id: id } }
   end
 end

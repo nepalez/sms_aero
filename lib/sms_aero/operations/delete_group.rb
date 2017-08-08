@@ -1,11 +1,8 @@
 class SmsAero
   operation :delete_group do
-    documentation "https://smsaero.ru/api/description/#groups"
+    option :group, FilledString
 
-    path { "delgroup" }
-
-    query do
-      attribute :group, Types::FilledString
-    end
+    path  "delgroup"
+    query { options.select { |key| key == :group } }
   end
 end

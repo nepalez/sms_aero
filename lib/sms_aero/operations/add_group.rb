@@ -1,11 +1,8 @@
 class SmsAero
   operation :add_group do
-    documentation "https://smsaero.ru/api/description/#groups"
+    option :group, Group
 
-    path { "addgroup" }
-
-    query do
-      attribute :group, Types::FilledString
-    end
+    path  "addgroup"
+    query { { group: group } }
   end
 end

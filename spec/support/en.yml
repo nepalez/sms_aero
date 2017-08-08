@@ -1,0 +1,8 @@
+---
+en:
+  evil:
+    client:
+      errors:
+        sms_aero:
+          send_sms:
+            address_given: "You should send SMS to either a group or a phone (not to both)"

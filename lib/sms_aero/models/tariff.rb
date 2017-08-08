@@ -1,8 +1,8 @@
-class SmsAero
-  class Tariff < Evil::Struct
-    attributes type: Types::Coercible::Float, optional: true do
-      attribute :"Direct channel",  as: :direct
-      attribute :"Digital channel", as: :digital
-    end
-  end
+class SmsAero::Tariff
+  extend  Dry::Initializer
+  extend  SmsAero::Callable
+  include SmsAero::Optional
+
+  option :"Direct channel",  proc(&:to_f), optional: true, as: :direct
+  option :"Digital channel", proc(&:to_f), optional: true, as: :digital
 end

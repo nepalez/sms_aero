@@ -1,17 +1,16 @@
 class SmsAero
   operation :add_phone do
-    documentation "https://smsaero.ru/api/description/#contacts"
+    option :phone,  Phone
+    option :group,  Group,        optional: true
+    option :lname,  proc(&:to_s), optional: true
+    option :fname,  proc(&:to_s), optional: true
+    option :sname,  proc(&:to_s), optional: true
+    option :param,  proc(&:to_s), optional: true
+    option :param2, proc(&:to_s), optional: true
+    option :param3, proc(&:to_s), optional: true
+    option :bday,   Birthday,     optional: true
 
-    path { "addphone" }
-
-    query do
-      attribute :phone, Types::Phone
-      attribute :group, Types::FilledString, optional: true
-      attribute :lname, Types::FilledString, optional: true
-      attribute :fname, Types::FilledString, optional: true
-      attribute :sname, Types::FilledString, optional: true
-      attribute :param, Types::FilledString, optional: true
-      attribute :bday,  Types::Birthday,     optional: true
-    end
+    path  "addphone"
+    query { options.except :password, :token, :use_ssl, :use_post, :testsend }
   end
 end

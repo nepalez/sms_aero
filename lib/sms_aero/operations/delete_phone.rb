@@ -1,12 +1,9 @@
 class SmsAero
   operation :delete_phone do
-    documentation "https://smsaero.ru/api/description/#contacts"
+    option :phone, Phone
+    option :group, FilledString, optional: true
 
-    path { "delphone" }
-
-    query do
-      attribute :phone, Types::Phone
-      attribute :group, Types::FilledString, optional: true
-    end
+    path  "delphone"
+    query { options.select { |key| %i[phone group].include? key } }
   end
 end

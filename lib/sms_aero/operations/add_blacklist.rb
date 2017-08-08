@@ -1,11 +1,8 @@
 class SmsAero
   operation :add_blacklist do
-    documentation "https://smsaero.ru/api/description/#balcklist"
+    option :phone, Phone
 
-    path { "addblacklist" }
-
-    query do
-      attribute :phone, Types::Phone
-    end
+    path  "addblacklist"
+    query { { phone: phone } }
   end
 end

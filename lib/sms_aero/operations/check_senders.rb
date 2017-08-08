@@ -1,15 +1,10 @@
 class SmsAero
   operation :check_senders do
-    documentation "https://smsaero.ru/api/description/#signs"
+    option :sign, FilledString
 
-    path { "senders" }
+    path  "senders"
+    query { { sign: sign } }
 
-    query do
-      attribute :sign, Types::FilledString
-    end
-
-    response :success, 200, format: :json, model: Answer do
-      attribute :data, Types::Array.member(Types::FilledString)
-    end
+    response(200) { |*res| Response::WithSenders.build(*res) }
   end
 end
