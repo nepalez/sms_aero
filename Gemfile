@@ -7,5 +7,3 @@ group :development, :test do
   gem "pry",        platform: :mri
   gem "pry-byebug", platform: :mri
 end
-
-gem "evil-client", path: "../evil-client"

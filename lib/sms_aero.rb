@@ -26,12 +26,53 @@ class SmsAero < Evil::Client
   query         { { user: user, password: token, answer: "json" } }
   response(200) { |*res| Response.build(*res) }
 
-  require_relative "sms_aero/operations/add_blacklist"
-  require_relative "sms_aero/operations/add_group"
-  require_relative "sms_aero/operations/add_phone"
-  require_relative "sms_aero/operations/check_balance"
-  require_relative "sms_aero/operations/check_groups"
-  require_relative "sms_aero/operations/check_senders"
+  operation :add_blacklist do
+    option :phone, Phone
+
+    path  "addblacklist"
+    query { { phone: phone } }
+  end
+
+  operation :add_group do
+    option :group, Group
+
+    path  "addgroup"
+    query { { group: group } }
+  end
+
+  operation :add_phone do
+    option :phone,  Phone
+    option :group,  optional: true, type: Group
+    option :bday,   optional: true, type: Birthday
+    option :lname,  optional: true
+    option :fname,  optional: true
+    option :sname,  optional: true
+    option :param,  optional: true
+    option :param2, optional: true
+    option :param3, optional: true
+
+    path  "addphone"
+    query { options.except :password, :token, :use_ssl, :use_post, :testsend }
+  end
+
+  operation :check_balance do
+    path "balance"
+    response(200) { |*res| Response::WithBalance.build(*res) }
+  end
+
+  operation :check_groups do
+    path "checkgroup"
+    response(200) { |*res| Response::WithGroups.build(*res) }
+  end
+
+  operation :check_senders do
+    option :sign, FilledString
+
+    path          "senders"
+    query         { { sign: sign } }
+    response(200) { |*res| Response::WithSenders.build(*res) }
+  end
+
   require_relative "sms_aero/operations/check_sending"
   require_relative "sms_aero/operations/check_sign"
   require_relative "sms_aero/operations/check_status"
