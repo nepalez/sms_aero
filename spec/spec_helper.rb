@@ -5,7 +5,6 @@ rescue LoadError
 end
 
 require "sms_aero"
-require "dry-types"
 require "webmock/rspec"
 
 RSpec.configure do |config|
@@ -18,3 +17,7 @@ RSpec.configure do |config|
     example.run
   end
 end
+
+I18n.available_locales = %i[en]
+I18n.locale = :en
+I18n.load_path = %w[spec/support/en.yml]

@@ -1,56 +1,139 @@
 require "evil/client"
-require "dry-types"
 
 # HTTP(s) client to the "SMS Aero" online service
-class SmsAero
-  extend Evil::Client::DSL
+class SmsAero < Evil::Client
+  require_relative "sms_aero/callable"
+  require_relative "sms_aero/optional"
+  require_relative "sms_aero/filled_string"
+  require_relative "sms_aero/future"
+  require_relative "sms_aero/digital"
+  require_relative "sms_aero/phone"
+  require_relative "sms_aero/birthday"
+  require_relative "sms_aero/group"
+  require_relative "sms_aero/channel"
+  require_relative "sms_aero/tariff"
+  require_relative "sms_aero/response"
 
-  # Collection of dry-types with gem-specific additions
-  Types = Module.new { |types| types.include Dry::Types.module }
+  option :user,     FilledString
+  option :password, optional: true
+  option :token,    default: -> { OpenSSL::Digest::MD5.new.hexdigest(password) }
+  option :use_ssl,  true.method(:&), default: proc { true }
+  option :use_post, true.method(:&), default: proc { true }
+  option :testsend, true.method(:&), default: proc { false }
 
-  # Definitions for types, models, and API operations
-  %w(types models operations).each do |folder|
-    path = File.expand_path("../sms_aero/#{folder}/*.rb", __FILE__)
-    Dir[path].each { |file| require(file) }
+  path          { "http#{'s' if use_ssl}://gate.smsaero.ru/" }
+  http_method   { use_post ? :post : :get }
+  query         { { user: user, password: token, answer: "json" } }
+  response(200) { |*res| Response.build(*res) }
+
+  operation :add_blacklist do
+    option :phone, Phone
+
+    path  "addblacklist"
+    query { { phone: phone } }
   end
 
-  settings do
-    option :user,     Types::FilledString
-    option :password, Types::Password
-    option :use_ssl,  Types::Form::Bool, default: proc { true }
-    option :use_post, Types::Form::Bool, default: proc { true }
-    option :test,     Types::Form::Bool, default: proc { false }
+  operation :add_group do
+    option :group, Group
+
+    path  "addgroup"
+    query { { group: group } }
   end
 
-  base_url do |settings|
-    "http#{'s' if settings.use_ssl}://gate.smsaero.ru/"
+  operation :add_phone do
+    option :phone,  Phone
+    option :group,  optional: true, type: Group
+    option :bday,   optional: true, type: Birthday
+    option :lname,  optional: true
+    option :fname,  optional: true
+    option :sname,  optional: true
+    option :param,  optional: true
+    option :param2, optional: true
+    option :param3, optional: true
+
+    path  "addphone"
+    query { options.except :password, :token, :use_ssl, :use_post, :testsend }
   end
 
-  operation do |settings|
-    documentation "https://smsaero.ru/api/description/"
+  operation :check_balance do
+    path "balance"
+    response(200) { |*res| Response::WithBalance.build(*res) }
+  end
 
-    http_method(settings.use_post ? :post : :get)
+  operation :check_groups do
+    path "checkgroup"
+    response(200) { |*res| Response::WithGroups.build(*res) }
+  end
 
-    security do
-      key_auth :user,     settings.user,     using: :query
-      key_auth :password, settings.password, using: :query
-      key_auth :answer,   "json",            using: :query
+  operation :check_senders do
+    option :sign, FilledString
+
+    path          "senders"
+    query         { { sign: sign } }
+    response(200) { |*res| Response::WithSenders.build(*res) }
+  end
+
+  operation :check_sending do
+    option :id, FilledString
+
+    path  "checksending"
+    query { { id: id } }
+  end
+
+  operation :check_sign do
+    option :sign, FilledString
+
+    path  "sign"
+    query { { sign: sign } }
+
+    response(200) do |_, _, body|
+      data = JSON.parse(body.first)
+      Response::WithStatuses.new(data: data)
     end
-
-    responses format: :json do
-      response :success, 200, model: Answer
-      response :failure, 200, model: Answer
-    end
   end
 
-  private
+  operation :check_status do
+    option :id, FilledString
 
-  def method_missing(name, *args)
-    op = operations[name.to_sym]
-    op ? op.call(*args) : super
+    path  "status"
+    query { { id: id } }
   end
 
-  def respond_to_missing?(name, *)
-    operations.key? name.to_sym
+  operation :check_tariff do
+    path "checktarif"
+
+    response(200) { |*res| Response::WithTariff.build(*res) }
+  end
+
+  operation :delete_group do
+    option :group, FilledString
+
+    path  "delgroup"
+    query { options.select { |key| key == :group } }
+  end
+
+  operation :delete_phone do
+    option :phone, Phone
+    option :group, FilledString, optional: true
+
+    path  "delphone"
+    query { options.select { |key| %i[phone group].include? key } }
+  end
+
+  operation :send_sms do
+    option :to,      Phone, optional: true
+    option :group,   Group, optional: true
+    option :from,    FilledString
+    option :text,    FilledString
+    option :date,    Future,  optional: true
+    option :digital, Digital, optional: true
+    option :type,    Channel, default: -> { 2 unless digital == 1 }
+
+    validate(:address_given) { !to ^ !group }
+
+    path  { group && "sendtogroup" || testsend && "testsend" || "send" }
+    query { options.slice(:to, :group, :from, :text, :date, :digital, :type) }
+
+    response(200) { |*res| Response::WithId.build(*res) }
   end
 end

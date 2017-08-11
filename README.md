@@ -28,7 +28,7 @@ Initialize a client with user and password:
 ```ruby
 client = SmsAero.new user: "joe",        # required
                      password: "foobar", # required
-                     test: true          # optional - to send test SMS by default
+                     testsend: true      # optional - to send test SMS
 ```
 
 Then send requests:
@@ -39,9 +39,9 @@ answer = client.send_sms text: "Hello!",
                          date: "2100/01/12", # Date, Time, DateTime are accepted as well
                          type: 3 # see API docs for details
 
-answer.result  # => "accepted"
-answer.id      # => "38293"
-answer.success # => true (checks whether id was returned)
+answer.result   # => "accepted"
+answer.id       # => "38293"
+answer.success? # => true (checks whether an id has been returned)
 ```
 
 ```ruby
@@ -50,13 +50,14 @@ answer.result # => "pending"
 ```
 
 ```ruby
-answer = client.send_to_group text:  "Hello!",
-                              group: "customers",
-                              date:  "2100/01/12",
-                              type:  1
+answer = client.send_sms text:  "Hello!",
+                         group: "customers",
+                         date:  Date.new("2100/01/12"),
+                         type:  1
 
-answer.result # => "accepted"
-answer.id     # => "894924"
+answer.result   # => "accepted"
+answer.id       # => "894924"
+answer.success? # => true (checks whether an id has been returned)
 ```
 
 ```ruby
