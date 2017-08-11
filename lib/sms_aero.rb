@@ -2,16 +2,16 @@ require "evil/client"
 
 # HTTP(s) client to the "SMS Aero" online service
 class SmsAero < Evil::Client
-  require_relative "sms_aero/models/callable"
-  require_relative "sms_aero/models/optional"
-  require_relative "sms_aero/models/filled_string"
-  require_relative "sms_aero/models/future"
-  require_relative "sms_aero/models/digital"
-  require_relative "sms_aero/models/phone"
-  require_relative "sms_aero/models/birthday"
-  require_relative "sms_aero/models/group"
-  require_relative "sms_aero/models/channel"
-  require_relative "sms_aero/models/tariff"
+  require_relative "sms_aero/callable"
+  require_relative "sms_aero/optional"
+  require_relative "sms_aero/filled_string"
+  require_relative "sms_aero/future"
+  require_relative "sms_aero/digital"
+  require_relative "sms_aero/phone"
+  require_relative "sms_aero/birthday"
+  require_relative "sms_aero/group"
+  require_relative "sms_aero/channel"
+  require_relative "sms_aero/tariff"
   require_relative "sms_aero/response"
 
   option :user,     FilledString
@@ -73,11 +73,67 @@ class SmsAero < Evil::Client
     response(200) { |*res| Response::WithSenders.build(*res) }
   end
 
-  require_relative "sms_aero/operations/check_sending"
-  require_relative "sms_aero/operations/check_sign"
-  require_relative "sms_aero/operations/check_status"
-  require_relative "sms_aero/operations/check_tariff"
-  require_relative "sms_aero/operations/delete_group"
-  require_relative "sms_aero/operations/delete_phone"
-  require_relative "sms_aero/operations/send_sms"
+  operation :check_sending do
+    option :id, FilledString
+
+    path  "checksending"
+    query { { id: id } }
+  end
+
+  operation :check_sign do
+    option :sign, FilledString
+
+    path  "sign"
+    query { { sign: sign } }
+
+    response(200) do |_, _, body|
+      data = JSON.parse(body.first)
+      Response::WithStatuses.new(data: data)
+    end
+  end
+
+  operation :check_status do
+    option :id, FilledString
+
+    path  "status"
+    query { { id: id } }
+  end
+
+  operation :check_tariff do
+    path "checktarif"
+
+    response(200) { |*res| Response::WithTariff.build(*res) }
+  end
+
+  operation :delete_group do
+    option :group, FilledString
+
+    path  "delgroup"
+    query { options.select { |key| key == :group } }
+  end
+
+  operation :delete_phone do
+    option :phone, Phone
+    option :group, FilledString, optional: true
+
+    path  "delphone"
+    query { options.select { |key| %i[phone group].include? key } }
+  end
+
+  operation :send_sms do
+    option :to,      Phone, optional: true
+    option :group,   Group, optional: true
+    option :from,    FilledString
+    option :text,    FilledString
+    option :date,    Future,  optional: true
+    option :digital, Digital, optional: true
+    option :type,    Channel, default: -> { 2 unless digital == 1 }
+
+    validate(:address_given) { !to ^ !group }
+
+    path  { group && "sendtogroup" || testsend && "testsend" || "send" }
+    query { options.slice(:to, :group, :from, :text, :date, :digital, :type) }
+
+    response(200) { |*res| Response::WithId.build(*res) }
+  end
 end
