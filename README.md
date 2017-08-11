@@ -5,17 +5,11 @@
 [![Dependency Status][gemnasium-badger]][gemnasium]
 [![Code Climate][codeclimate-badger]][codeclimate]
 
-HTTP(s) client to [SMS Aero service API][sms-aero].
+HTTP(s) client to [SMS Aero service API][sms-aero]
+written on top of [evil-client][evil-client] "framework".
 
-[sms-aero]: https://smsaero.ru/api/description/
-[codeclimate-badger]: https://img.shields.io/codeclimate/github/nepalez/sms_aero.svg?style=flat
-[codeclimate]: https://codeclimate.com/github/nepalez/sms_aero
-[gem-badger]: https://img.shields.io/gem/v/sms_aero.svg?style=flat
-[gem]: https://rubygems.org/gems/sms_aero
-[gemnasium-badger]: https://img.shields.io/gemnasium/nepalez/sms_aero.svg?style=flat
-[gemnasium]: https://gemnasium.com/nepalez/sms_aero
-[travis-badger]: https://img.shields.io/travis/nepalez/sms_aero/master.svg?style=flat
-[travis]: https://travis-ci.org/nepalez/sms_aero
+<a href="https://evilmartians.com/">
+<img src="https://evilmartians.com/badges/sponsored-by-evil-martians.svg" alt="Sponsored by Evil Martians" width="236" height="54"></a>
 
 ## Synopsis
 
@@ -128,3 +122,14 @@ answer = client.delete_phone phone: "+7 (999) 123-4567",
 
 answer.result   # => "accepted"
 ```
+
+[sms-aero]: https://smsaero.ru/api/description/
+[codeclimate-badger]: https://img.shields.io/codeclimate/github/nepalez/sms_aero.svg?style=flat
+[codeclimate]: https://codeclimate.com/github/nepalez/sms_aero
+[gem-badger]: https://img.shields.io/gem/v/sms_aero.svg?style=flat
+[gem]: https://rubygems.org/gems/sms_aero
+[gemnasium-badger]: https://img.shields.io/gemnasium/nepalez/sms_aero.svg?style=flat
+[gemnasium]: https://gemnasium.com/nepalez/sms_aero
+[travis-badger]: https://img.shields.io/travis/nepalez/sms_aero/master.svg?style=flat
+[travis]: https://travis-ci.org/nepalez/sms_aero
+[evil-client]: https://github.com/evilmartians/evil-client

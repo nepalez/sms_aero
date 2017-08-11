@@ -25,6 +25,8 @@ class SmsAero < Evil::Client
   http_method   { use_post ? :post : :get }
   query         { { user: user, password: token, answer: "json" } }
   response(200) { |*res| Response.build(*res) }
+  headers "X-Ruby-Client"    => "https://github.com/nepalez/sms_aero",
+          "X-Ruby-Framework" => "https://github.com/evilmartians/evil-client"
 
   operation :add_blacklist do
     option :phone, Phone
