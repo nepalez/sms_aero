@@ -17,7 +17,3 @@ RSpec.configure do |config|
     example.run
   end
 end
-
-I18n.available_locales = %i[en]
-I18n.locale = :en
-I18n.load_path = %w[spec/support/en.yml]

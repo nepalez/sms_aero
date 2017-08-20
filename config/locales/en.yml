@@ -1,0 +1,7 @@
+---
+en:
+  evil:
+    client:
+      sms_aero:
+        send_sms:
+          missed_address: "You must provide either email (to:) or group (group:) as an address of SMS message (not both)"

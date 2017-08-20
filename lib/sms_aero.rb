@@ -1,5 +1,7 @@
 require "evil/client"
 
+I18n.load_path += [File.expand_path("../../config/locales/en.yml", __FILE__)]
+
 # HTTP(s) client to the "SMS Aero" online service
 class SmsAero < Evil::Client
   require_relative "sms_aero/callable"
@@ -131,7 +133,7 @@ class SmsAero < Evil::Client
     option :digital, Digital, optional: true
     option :type,    Channel, default: -> { 2 unless digital == 1 }
 
-    validate(:address_given) { !to ^ !group }
+    validate { errors.add :missed_address unless !to ^ !group }
 
     path  { group && "sendtogroup" || testsend && "testsend" || "send" }
     query { options.slice(:to, :group, :from, :text, :date, :digital, :type) }
