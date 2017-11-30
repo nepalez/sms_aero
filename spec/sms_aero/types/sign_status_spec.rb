@@ -2,18 +2,18 @@ require "spec_helper"
 
 RSpec.describe SmsAero::Types::SignStatus do
   context "valid status:" do
-    let(:values) { %w(accepted approved rejected pending) }
+    let(:items) { %w(accepted approved rejected pending) }
 
     it "returns a status" do
-      values.each { |value| expect(described_class[value]).to eq value }
+      items.each { |item| expect(described_class[item]).to eq item }
     end
   end
 
   context "invalid status:" do
-    let(:value) { "wrong" }
+    let(:item) { "wrong" }
 
     it "fails" do
-      expect { described_class[value] }.to raise_error(StandardError, /wrong/)
+      expect { described_class[item] }.to raise_error(StandardError, /wrong/)
     end
   end
 end

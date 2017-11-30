@@ -12,6 +12,9 @@ Metrics/LineLength:
     - http
     - https
   
+Layout/SpaceInLambdaLiteral:
+  Enabled: false
+
 Style/Lambda:
   Enabled: false
 
@@ -21,13 +24,13 @@ Style/StringLiterals:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/DateTime:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
 Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/SpaceInLambdaLiteral:
   Enabled: false
 
 Style/PercentLiteralDelimiters:

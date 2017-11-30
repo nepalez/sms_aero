@@ -13,7 +13,7 @@ module SmsAero::Types
                  date = value.to_date if value.respond_to? :to_date
                  date ||= ::Date.parse(value.to_s)
                  date.strftime "%Y-%m-%d"
-               rescue
+               rescue StandardError
                  raise TypeError, "#{value.inspect} cannot be coerced to date"
                end
              end

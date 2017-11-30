@@ -9,7 +9,7 @@ module SmsAero::Types
       number = time.to_i
 
       number > ::Time.now.to_i ? number : raise(error)
-    rescue
+    rescue StandardError
       raise error
     end
   end
