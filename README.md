@@ -127,3 +127,14 @@ answer = client.delete_phone phone: "+7 (999) 123-4567",
 
 answer.result   # => "accepted"
 ```
+
+```ruby
+# checking existance & availability of phone number
+answer = client.hlr phone: "+7 (999) 123-4567"
+answer.result   # => "accepted"
+id = answer.id  # => "12345", id of request
+
+answer = client.hlr_status id
+answer.result   # => "accepted"
+answer.status   # => any of :available, :unavailable or :nonexistent
+```
