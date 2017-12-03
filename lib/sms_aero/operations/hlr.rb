@@ -3,7 +3,7 @@ class SmsAero
     1 => :available,
     2 => :unavailable,
     3 => :nonexistent
-  }
+  }.freeze
 
   operation :hlr do
     documentation "https://smsaero.ru/api/description/#hlr"
@@ -26,8 +26,7 @@ class SmsAero
     query { attribute :id, Types::Coercible::String.constrained(filled: true) }
 
     response :success, 200, format: :json, model: Answer do
-      status_proc = proc { |s| HLR_STATUSES[s.to_i] }
-      attribute :status, status_proc
+      attribute :status, -> (s) { HLR_STATUSES[s.to_i] }
     end
   end
 end
