@@ -1,8 +1,8 @@
 class SmsAero::Response
   extend Dry::Initializer
   extend SmsAero::Optional
-  option :reason, proc(&:to_s),    default: proc { nil }
-  option :result, proc(&:strip),   default: -> { "accepted" }
+  option :reason, proc(&:to_s),  default: proc { nil }
+  option :result, proc(&:strip), default: -> { "accepted" }
 
   def success?
     result == "accepted"
@@ -27,4 +27,5 @@ class SmsAero::Response
   require_relative "response/with_senders"
   require_relative "response/with_statuses"
   require_relative "response/with_tariff"
+  require_relative "response/with_hlr"
 end

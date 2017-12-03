@@ -14,6 +14,7 @@ class SmsAero < Evil::Client
   require_relative "sms_aero/group"
   require_relative "sms_aero/channel"
   require_relative "sms_aero/tariff"
+  require_relative "sms_aero/hlr_status"
   require_relative "sms_aero/response"
 
   option :user,     FilledString
@@ -113,7 +114,7 @@ class SmsAero < Evil::Client
     option :group, FilledString
 
     path  "delgroup"
-    query { options.select { |key| key == :group } }
+    query { { group: group } }
   end
 
   operation :delete_phone do
@@ -121,7 +122,7 @@ class SmsAero < Evil::Client
     option :group, FilledString, optional: true
 
     path  "delphone"
-    query { options.select { |key| %i[phone group].include? key } }
+    query { options.slice(:phone, :group) }
   end
 
   operation :send_sms do
@@ -139,5 +140,23 @@ class SmsAero < Evil::Client
     query { options.slice(:to, :group, :from, :text, :date, :digital, :type) }
 
     response(200) { |*res| Response::WithId.build(*res) }
+  end
+
+  operation :hlr do
+    option :phone, Phone
+
+    path  "hlr"
+    query { { phone: phone } }
+
+    response(200) { |*res| Response::WithId.build(*res) }
+  end
+
+  operation :hlr_status do
+    option :id, FilledString
+
+    path  "hlrStatus"
+    query { { id: id } }
+
+    response(200) { |*res| Response::WithHlr.build(*res) }
   end
 end

@@ -10,7 +10,7 @@ class SmsAero::Future < String
     number = time.to_i
     return super(number.to_s) if number > ::Time.now.to_i
     raise "#{value} is a time in the past, not in the future"
-  rescue
+  rescue StandardError
     raise "#{value} is not a valid time"
   end
 end
