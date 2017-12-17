@@ -40,6 +40,14 @@ describe SmsAero do
         expect { subject }.to raise_error(ArgumentError)
       end
     end
+
+    context "when rejected" do
+      let(:answer) { { result: "rejected" } }
+
+      it "has success false" do
+        expect(subject.success).to be_falsey
+      end
+    end
   end
 
   describe "#hlr_status" do
