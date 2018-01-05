@@ -85,7 +85,7 @@ RSpec.describe SmsAero, "#delete_phone" do
     before { params[:group] = "" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -93,7 +93,7 @@ RSpec.describe SmsAero, "#delete_phone" do
     before { params[:phone] = "234" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /234/)
+      expect { subject }.to raise_error(StandardError, /234/)
     end
   end
 
@@ -101,7 +101,7 @@ RSpec.describe SmsAero, "#delete_phone" do
     before { params.delete :phone }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /phone/)
+      expect { subject }.to raise_error(StandardError, /phone/)
     end
   end
 end

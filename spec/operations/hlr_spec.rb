@@ -28,7 +28,7 @@ describe SmsAero do
       let(:params) { { phone: "123" } }
 
       it "raises an exception" do
-        expect { subject }.to raise_error(Evil::Client::ValidationError, /123/)
+        expect { subject }.to raise_error(StandardError, /123/)
       end
     end
 
@@ -36,7 +36,7 @@ describe SmsAero do
       let(:params) { {} }
 
       it "raises an exception" do
-        expect { subject }.to raise_error(ArgumentError)
+        expect { subject }.to raise_error(StandardError)
       end
     end
   end

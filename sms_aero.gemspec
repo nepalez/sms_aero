@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = ">= 2.2"
 
-  gem.add_runtime_dependency "evil-client", "~> 2.0"
+  gem.add_runtime_dependency "evil-client", "~> 3.0"
 
   gem.add_development_dependency "rake", ">= 10"
   gem.add_development_dependency "rspec", "~> 3.0"

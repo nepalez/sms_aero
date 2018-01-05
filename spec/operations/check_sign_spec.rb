@@ -64,7 +64,7 @@ RSpec.describe SmsAero, "#check_sign" do
     before { params[:sign] = "" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -72,7 +72,7 @@ RSpec.describe SmsAero, "#check_sign" do
     before { params.delete :sign }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 end

@@ -65,7 +65,7 @@ RSpec.describe SmsAero, "#add_group" do
     before { params[:group] = "" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe SmsAero, "#add_group" do
     before { params.delete :group }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /group/)
+      expect { subject }.to raise_error(StandardError, /group/)
     end
   end
 end

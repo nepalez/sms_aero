@@ -65,7 +65,7 @@ RSpec.describe SmsAero, "#check_status" do
     before { params[:id] = "" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -73,7 +73,7 @@ RSpec.describe SmsAero, "#check_status" do
     before { params.delete :id }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 end

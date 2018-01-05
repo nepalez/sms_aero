@@ -107,7 +107,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params[:to] = "1324" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /1324/)
+      expect { subject }.to raise_error(StandardError, /1324/)
     end
   end
 
@@ -115,7 +115,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params.delete :to }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -124,7 +124,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params.delete :to }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -132,7 +132,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params[:group] = "readers" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -161,7 +161,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params[:date] = (Date.today - 1) }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError)
+      expect { subject }.to raise_error(StandardError)
     end
   end
 
@@ -169,7 +169,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params[:date] = "foo" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /foo/)
+      expect { subject }.to raise_error(StandardError, /foo/)
     end
   end
 
@@ -217,7 +217,7 @@ RSpec.describe SmsAero, "#send_sms" do
     before { params[:type] = 11 }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /11/)
+      expect { subject }.to raise_error(StandardError, /11/)
     end
   end
 

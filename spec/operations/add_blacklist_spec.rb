@@ -81,7 +81,7 @@ RSpec.describe SmsAero, "#add_blacklist" do
     before { params[:phone] = "foobar23" }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /23/)
+      expect { subject }.to raise_error(StandardError, /23/)
     end
   end
 
@@ -89,7 +89,7 @@ RSpec.describe SmsAero, "#add_blacklist" do
     before { params.delete :phone }
 
     it "raises an exception" do
-      expect { subject }.to raise_error(Evil::Client::ValidationError, /phone/)
+      expect { subject }.to raise_error(StandardError, /phone/)
     end
   end
 end
