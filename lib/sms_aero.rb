@@ -132,7 +132,7 @@ class SmsAero < Evil::Client
     option :text,    FilledString
     option :date,    Future,  optional: true
     option :digital, Digital, optional: true
-    option :type,    Channel, default: -> { 2 unless digital == 1 }
+    option :type,    Channel, default: -> { 5 unless digital == 1 }
 
     validate { errors.add :missed_address unless !to ^ !group }
 

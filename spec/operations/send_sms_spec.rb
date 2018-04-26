@@ -16,7 +16,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
@@ -53,7 +53,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "group=readers&" \
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
@@ -71,7 +71,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
@@ -91,7 +91,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
@@ -145,7 +145,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
@@ -201,11 +201,11 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=3&" \
+      "type=4&" \
       "user=BAZ"
     end
 
-    before { params[:type] = 3 }
+    before { params[:type] = 4 }
 
     it "sends a request" do
       subject
@@ -229,7 +229,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
@@ -249,7 +249,7 @@ RSpec.describe SmsAero, "#send_sms" do
       "password=9d1e4709d6a41407ab34cf99c7085f79&" \
       "text=Hi&" \
       "to=79093828445&" \
-      "type=2&" \
+      "type=5&" \
       "user=BAZ"
     end
 
