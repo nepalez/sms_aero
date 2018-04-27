@@ -9,7 +9,7 @@ class SmsAero::Channel < String
 
   def initialize(value)
     channel = value.to_s
-    return super(channel) if %w(1 2 3 4 6).include? channel
+    return super(channel) if %w(4 5 6 7 8).include? channel
     raise "Incorrect value #{channel} for channel"
   end
 end
